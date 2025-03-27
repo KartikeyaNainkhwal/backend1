@@ -5,9 +5,16 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
+const cors = require('cors');
+
+
 
 // Middleware
-app.use(cors()); // Allow requests from your React frontend
+app.use(cors({
+  origin: '*', // Allow all origins (not recommended for production)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+})); // Allow requests from your React frontend
 app.use(bodyParser.json());
 
 // Email configuration (using Gmail SMTP)
